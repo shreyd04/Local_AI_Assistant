@@ -1,0 +1,2 @@
+model,prompt_count,total_runs,ttft_mean_ms,ttft_median_ms,ttft_std_dev_ms,latency_mean_ms,latency_median_ms,latency_std_dev_ms,tokens_per_second_mean,tokens_per_second_median,tokens_per_second_std_dev,output_tokens_mean,model_memory_mean_mb,model_memory_max_mb
+phi3.5,40,40,495.41867827938404,456.2625630060211,193.79527962664375,15904.58468858269,19527.503437479027,8882.715500965402,11.797313899414462,11.73303924476048,1.373209985202106,178,2980.887890625,3023.9375

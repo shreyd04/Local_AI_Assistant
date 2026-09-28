@@ -1,0 +1,2 @@
+model,prompt_count,total_runs,ttft_mean_ms,ttft_median_ms,ttft_std_dev_ms,latency_mean_ms,latency_median_ms,latency_std_dev_ms,tokens_per_second_mean,tokens_per_second_median,tokens_per_second_std_dev,output_tokens_mean,model_memory_mean_mb,model_memory_max_mb
+llama3.2:3b,40,40,359.7827301302459,340.2650625212118,76.81211100422655,13970.600365591235,14186.924917041324,10294.03272686895,11.018242459545053,11.424442952418243,1.6327488321886852,141.775,2389.6734375,2427.390625

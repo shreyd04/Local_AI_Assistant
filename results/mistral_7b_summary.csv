@@ -1,0 +1,2 @@
+model,prompt_count,total_runs,ttft_mean_ms,ttft_median_ms,ttft_std_dev_ms,latency_mean_ms,latency_median_ms,latency_std_dev_ms,tokens_per_second_mean,tokens_per_second_median,tokens_per_second_std_dev,output_tokens_mean,model_memory_mean_mb,model_memory_max_mb
+mistral:7b,40,40,1843.6704635707429,1254.989604523871,1997.6792211557784,59458.519922962296,68284.81602098327,39394.0142776292,2.661849601876397,2.7051928972246992,0.27479116235581874,153.15,367.063671875,560.203125
