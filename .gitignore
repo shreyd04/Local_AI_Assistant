@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Local model files
+*.gguf
+*.bin
+*.safetensors
+models/
+ollama_models/
+
+# Benchmark temporary files
+*.log
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+
+# OS/editor temporary files
+*.swp
+*.swo

@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+ollama
+pydantic
+psutil
+httpx
+pytest
