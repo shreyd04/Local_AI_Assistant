@@ -1,0 +1,209 @@
+[
+  {
+    "id": "fact_001",
+    "category": "factual",
+    "prompt": "What is the purpose of an operating system?"
+  },
+  {
+    "id": "fact_002",
+    "category": "factual",
+    "prompt": "What is a primary key in a relational database?"
+  },
+  {
+    "id": "fact_003",
+    "category": "factual",
+    "prompt": "What does HTTP stand for and what is it used for?"
+  },
+  {
+    "id": "fact_004",
+    "category": "factual",
+    "prompt": "What is the difference between supervised and unsupervised learning?"
+  },
+  {
+    "id": "fact_005",
+    "category": "factual",
+    "prompt": "What is the purpose of a compiler?"
+  },
+
+  {
+    "id": "reason_001",
+    "category": "reasoning",
+    "prompt": "A system processes 100 requests per second and each request takes 0.2 seconds of processing time. Explain the relationship between throughput and processing time."
+  },
+  {
+    "id": "reason_002",
+    "category": "reasoning",
+    "prompt": "A database query becomes slower after millions of rows are added. Give a reasoned explanation of why this may happen."
+  },
+  {
+    "id": "reason_003",
+    "category": "reasoning",
+    "prompt": "A program works correctly on small inputs but becomes very slow on large inputs. Explain what this suggests about its algorithmic complexity."
+  },
+  {
+    "id": "reason_004",
+    "category": "reasoning",
+    "prompt": "A web application sends a request to a server and receives no response. Give several technically plausible causes and explain how you would isolate them."
+  },
+  {
+    "id": "reason_005",
+    "category": "reasoning",
+    "prompt": "A machine learning model performs very well on training data but poorly on unseen data. Explain what this suggests and why."
+  },
+
+  {
+    "id": "summary_001",
+    "category": "summarization",
+    "prompt": "Summarize this in two sentences: REST is an architectural style in which resources are identified by URLs and manipulated using standard HTTP methods. REST systems commonly emphasize stateless communication between client and server."
+  },
+  {
+    "id": "summary_002",
+    "category": "summarization",
+    "prompt": "Summarize this in three bullet points: Indexes can improve database query performance by reducing the amount of data that must be scanned. They require additional storage and can increase the cost of writes because indexes may also need to be updated."
+  },
+  {
+    "id": "summary_003",
+    "category": "summarization",
+    "prompt": "Summarize this paragraph in one sentence: Machine learning systems learn patterns from examples and use those learned patterns to make predictions or decisions on new inputs."
+  },
+  {
+    "id": "summary_004",
+    "category": "summarization",
+    "prompt": "Summarize in two sentences: A process has its own virtual address space, while threads within the same process normally share the process address space. Threads therefore have lower overhead for sharing data but require synchronization when accessing shared state."
+  },
+  {
+    "id": "summary_005",
+    "category": "summarization",
+    "prompt": "Summarize in three bullet points: APIs allow software components to communicate. They define how requests and responses should be structured. Well-designed APIs make systems easier to integrate and maintain."
+  },
+
+  {
+    "id": "instruction_001",
+    "category": "instruction_following",
+    "prompt": "Answer using exactly three bullet points. Explain what Docker is."
+  },
+  {
+    "id": "instruction_002",
+    "category": "instruction_following",
+    "prompt": "Answer in exactly two sentences. Explain what a database transaction is."
+  },
+  {
+    "id": "instruction_003",
+    "category": "instruction_following",
+    "prompt": "Give exactly four differences between TCP and UDP."
+  },
+  {
+    "id": "instruction_004",
+    "category": "instruction_following",
+    "prompt": "Explain recursion using exactly one analogy and no more than five sentences."
+  },
+  {
+    "id": "instruction_005",
+    "category": "instruction_following",
+    "prompt": "Return exactly five keywords related to machine learning, separated by commas."
+  },
+
+  {
+    "id": "class_001",
+    "category": "classification",
+    "prompt": "Classify the following as programming language, database, or operating system: Python."
+  },
+  {
+    "id": "class_002",
+    "category": "classification",
+    "prompt": "Classify the following as programming language, database, or operating system: PostgreSQL."
+  },
+  {
+    "id": "class_003",
+    "category": "classification",
+    "prompt": "Classify the following as programming language, database, or operating system: Linux."
+  },
+  {
+    "id": "class_004",
+    "category": "classification",
+    "prompt": "Classify the following sentiment as positive, negative, or neutral: The application is easy to use and performs reliably."
+  },
+  {
+    "id": "class_005",
+    "category": "classification",
+    "prompt": "Classify the following sentiment as positive, negative, or neutral: The service failed repeatedly and caused significant delays."
+  },
+
+  {
+    "id": "extract_001",
+    "category": "information_extraction",
+    "prompt": "Extract the person name, role, and company from this text: 'Ananya Sharma joined Acme Technologies as a Software Engineer.'"
+  },
+  {
+    "id": "extract_002",
+    "category": "information_extraction",
+    "prompt": "Extract the programming languages from this text: 'The project uses Python, JavaScript, and SQL for its backend and data processing.'"
+  },
+  {
+    "id": "extract_003",
+    "category": "information_extraction",
+    "prompt": "Extract the three technologies from this text: 'The application uses FastAPI, PostgreSQL, and Redis.'"
+  },
+  {
+    "id": "extract_004",
+    "category": "information_extraction",
+    "prompt": "Extract the product name and version from this text: 'The team upgraded the application to Local Assistant version 2.1.'"
+  },
+  {
+    "id": "extract_005",
+    "category": "information_extraction",
+    "prompt": "Extract the city, country, and year from this text: 'The conference was held in Bengaluru, India, in 2025.'"
+  },
+
+  {
+    "id": "code_001",
+    "category": "coding",
+    "prompt": "Write a Python function that returns the maximum value in a list of integers."
+  },
+  {
+    "id": "code_002",
+    "category": "coding",
+    "prompt": "Write a Python function that checks whether a string is a palindrome."
+  },
+  {
+    "id": "code_003",
+    "category": "coding",
+    "prompt": "Write a SQL query that returns the number of employees in each department from an employees table containing department_id."
+  },
+  {
+    "id": "code_004",
+    "category": "coding",
+    "prompt": "Write a Python function that counts the frequency of each element in a list."
+  },
+  {
+    "id": "code_005",
+    "category": "coding",
+    "prompt": "Write a SQL query that returns customers whose total order value is greater than 10000."
+  },
+
+  {
+    "id": "json_001",
+    "category": "structured_output",
+    "prompt": "Describe a REST API using structured fields for its name, purpose, and three characteristics."
+  },
+  {
+    "id": "json_002",
+    "category": "structured_output",
+    "prompt": "Describe a database index using structured fields for its definition, benefits, and limitations."
+  },
+  {
+    "id": "json_003",
+    "category": "structured_output",
+    "prompt": "Describe supervised learning using structured fields for definition, inputs, and example."
+  },
+  {
+    "id": "json_004",
+    "category": "structured_output",
+    "prompt": "Describe Docker using structured fields for purpose, main concept, and one example use case."
+  },
+  {
+    "id": "json_005",
+    "category": "structured_output",
+    "prompt": "Describe a software API using structured fields for consumer, provider, and communication method."
+  }
+]

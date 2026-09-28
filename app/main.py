@@ -1,5 +1,13 @@
 from fastapi import FastAPI, HTTPException
-
+from app.structured_output import (
+    StructuredOutputError,
+    generate_structured_response,
+)
+from app.schemas import (
+    ChatRequest,
+    ChatResponse,
+    StructuredChatAPIResponse,
+)
 from app.ollama_client import (
     MODEL_NAME,
     generate_response,
@@ -68,4 +76,29 @@ def chat(request: ChatRequest):
                 "Local model inference failed: "
                 f"{str(exc)}"
             ),
+        )
+@app.post(
+    "/structured-chat",
+    response_model=StructuredChatAPIResponse,
+)
+def structured_chat(request: ChatRequest):
+
+    try:
+
+        result = generate_structured_response(
+            prompt=request.prompt,
+            max_retries=1,
+        )
+
+        return StructuredChatAPIResponse(
+            result=result.data,
+            model=MODEL_NAME,
+            attempts=result.attempts,
+        )
+
+    except StructuredOutputError as exc:
+
+        raise HTTPException(
+            status_code=502,
+            detail=str(exc),
         )
