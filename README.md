@@ -612,7 +612,8 @@ Chat Interface
 
 Structured Output
 
-<img width="1440" height="858" alt="Screenshot 2026-09-30 at 5 27 49 PM" src="https://github.com/user-attachments/assets/b2f06ab9-1bf5-43c8-bfef-b70dd608fb92" />
+<img width="1440" height="825" alt="Screenshot 2026-09-30 at 5 22 16 PM" src="https://github.com/user-attachments/assets/f2c668da-c127-4ee9-9987-91f6bfd3d894" />
+
 
 Benchmark Results
 
