@@ -1,0 +1,2 @@
+model,scored_prompts,mean_quality_score,quality_percentage,correctness_mean,instruction_adherence_mean,completeness_mean
+llama3.2:3b-instruct-q5_K_M,40,1.95,97.5,1.95,1.95,1.95

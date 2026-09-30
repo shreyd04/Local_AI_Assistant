@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local AI Assistant</title>
+  <meta name="description" content="A local AI assistant powered by Ollama and FastAPI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">⌁</div>
+        <div>
+          <div class="brand-title">Local AI</div>
+          <div class="brand-subtitle">Offline inference lab</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Connection</div>
+        <div id="connectionStatus" class="status-pill status-checking">
+          <span class="status-dot"></span>
+          Checking backend…
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Model</div>
+        <div class="model-card">
+          <div class="model-name">mistral:7b-instruct-v0.3-q5_K_M</div>
+          <div class="model-meta">Ollama · local</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Generation</div>
+
+        <label class="control-label" for="temperature">
+          Temperature
+          <span id="temperatureValue">0.0</span>
+        </label>
+
+        <input
+          id="temperature"
+          class="range"
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value="0"
+        />
+
+        <div class="range-hints">
+          <span>Deterministic</span>
+          <span>Creative</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Response mode</div>
+        <button id="structuredToggle" class="mode-toggle" aria-pressed="false">
+          <span class="toggle-indicator"></span>
+          <span>
+            <strong>Structured JSON</strong>
+            <small>Pydantic-validated response</small>
+          </span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="offline-badge">LOCAL • NO CLOUD LLM</div>
+        <div class="footer-copy">
+          FastAPI + Ollama<br />
+          Designed for local experimentation
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">LOCAL INFERENCE</div>
+          <h1>Ask your assistant</h1>
+        </div>
+        <button id="clearChat" class="ghost-button">Clear chat</button>
+      </header>
+
+      <section id="chat" class="chat-container" aria-live="polite">
+        <div class="welcome-card">
+          <div class="welcome-icon">✦</div>
+          <h2>Private, local, measurable.</h2>
+          <p>
+            Ask a question and inspect the actual inference metrics from your local model.
+            Nothing needs to leave your machine.
+          </p>
+          <div class="suggestion-grid">
+            <button class="suggestion">Explain why database indexes improve query performance.</button>
+            <button class="suggestion">Compare a process and a thread in operating systems.</button>
+            <button class="suggestion">Give three principles of REST API architecture.</button>
+            <button class="suggestion">Explain overfitting and two ways to reduce it.</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="composer-wrap">
+        <div id="errorBanner" class="error-banner hidden"></div>
+
+        <form id="composer" class="composer">
+          <textarea
+            id="promptInput"
+            rows="1"
+            placeholder="Message your local AI assistant…"
+            aria-label="Message"
+          ></textarea>
+
+          <button id="sendButton" class="send-button" type="submit" aria-label="Send message">
+            <span id="sendIcon">↑</span>
+            <span id="sendLabel">Send</span>
+          </button>
+        </form>
+
+        <div class="composer-note">
+          <span>Enter to send</span>
+          <span>Shift + Enter for new line</span>
+        </div>
+      </section>
+    </main>
+
+    <aside class="metrics-panel">
+      <div class="metrics-header">
+        <div class="eyebrow">RUN METRICS</div>
+        <div class="metrics-title">Latest inference</div>
+      </div>
+
+      <div id="metricsEmpty" class="metrics-empty">
+        <div class="metrics-empty-icon">◌</div>
+        <p>Metrics will appear after your first request.</p>
+      </div>
+
+      <div id="metricsContent" class="hidden">
+        <div class="metric-card">
+          <span class="metric-label">TTFT</span>
+          <strong id="metricTtft">—</strong>
+          <small>time to first token</small>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-label">Latency</span>
+          <strong id="metricLatency">—</strong>
+          <small>end-to-end response time</small>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-label">Throughput</span>
+          <strong id="metricTokens">—</strong>
+          <small>generated tokens / sec</small>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-label">Output</span>
+          <strong id="metricOutputTokens">—</strong>
+          <small>tokens generated</small>
+        </div>
+
+        <div class="last-run-card">
+          <div class="metric-label">MODEL</div>
+          <div id="metricModel" class="mono-value">mistral:7b-instruct-v0.3-q5_K_M</div>
+          <div class="metric-divider"></div>
+          <div class="metric-label">TEMPERATURE</div>
+          <div id="metricTemperature" class="mono-value">0.0</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

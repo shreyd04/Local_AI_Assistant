@@ -1,0 +1,4 @@
+model,scored_prompts,mean_quality_score,quality_percentage,mean_correctness,mean_instruction_adherence,mean_completeness
+llama3.2:3b,40,1.9,95.0,1.925,1.925,1.85
+mistral:7b,40,2.0,100.0,2.0,2.0,2.0
+phi3.5,40,1.917,95.83,1.975,1.875,1.9

@@ -1,0 +1,2 @@
+model,runs,ttft_mean_ms,ttft_median_ms,latency_mean_ms,latency_median_ms,tokens_per_second_mean,tokens_per_second_median,output_tokens_mean,model_memory_mean_mb,model_memory_max_mb,python_memory_mean_mb,python_memory_max_mb
+mistral:7b-instruct-v0.3-q5_K_M,40,1675.5650467998294,1417.3684999996112,68433.03829677502,49344.44206200078,3.0790005230230553,3.1601123549095935,143,4977.8375,5231.015625,13.89375,17.75

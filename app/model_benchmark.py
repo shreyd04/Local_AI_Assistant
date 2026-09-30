@@ -592,7 +592,7 @@ def main():
         required=True,
         help=(
             "Ollama model name, e.g. "
-            "llama3.2:3b"
+            "mistral:7b-instruct-v0.3-q5_K_M"
         ),
     )
 

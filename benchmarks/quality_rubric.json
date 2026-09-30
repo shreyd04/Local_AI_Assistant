@@ -1,0 +1,92 @@
+{
+  "score_scale": {
+    "0": "Fails the criterion or contains a material error.",
+    "1": "Partially satisfies the criterion; minor errors, omissions, or constraint violations are present.",
+    "2": "Fully satisfies the criterion with no material error."
+  },
+
+  "dimensions": {
+    "correctness": {
+      "factual": "Are the factual claims technically correct?",
+      "reasoning": "Is the reasoning logically sound and is the conclusion supported?",
+      "summarization": "Does the summary faithfully represent the supplied information?",
+      "instruction_following": "Is the requested content correct?",
+      "classification": "Is the classification correct?",
+      "information_extraction": "Are the requested fields/values extracted correctly?",
+      "coding": "Does the code correctly solve the requested task?",
+      "structured_output": "Is the structured response semantically correct?"
+    },
+
+    "instruction_adherence": {
+      "factual": "Does the answer directly address the question without unnecessary deviation?",
+      "reasoning": "Does the answer address the requested reasoning task?",
+      "summarization": "Does the output respect the requested summary format and length?",
+      "instruction_following": "Does the response satisfy every explicit formatting/content constraint?",
+      "classification": "Does the response follow the requested classification format?",
+      "information_extraction": "Does the response extract only the requested information in a usable form?",
+      "coding": "Does the solution use the requested language/format and satisfy the stated requirements?",
+      "structured_output": "Does the response follow the required structured-output format and fields?"
+    },
+
+    "completeness": {
+      "factual": "Does the answer cover the important information needed to answer the question?",
+      "reasoning": "Does the response address the important parts of the reasoning task?",
+      "summarization": "Are the main points preserved without important omissions?",
+      "instruction_following": "Are all requested elements present?",
+      "classification": "Is the required classification actually provided?",
+      "information_extraction": "Are all requested fields/values present?",
+      "coding": "Does the answer include all required code behavior?",
+      "structured_output": "Are all required fields/content elements present?"
+    }
+  },
+
+  "category_guidance": {
+    "factual": {
+      "2": "Correct, relevant, and technically sound.",
+      "1": "Mostly correct but contains a minor factual issue or omission.",
+      "0": "Contains a material factual error or fails to answer."
+    },
+
+    "reasoning": {
+      "2": "Reasoning is logically coherent and reaches a supported conclusion.",
+      "1": "Core reasoning is present but incomplete or contains a minor logical issue.",
+      "0": "Reasoning is materially incorrect, contradictory, or absent."
+    },
+
+    "summarization": {
+      "2": "Faithful summary preserving the main ideas with no material distortion.",
+      "1": "Captures some main ideas but misses or distorts an important point.",
+      "0": "Substantially inaccurate or fails to summarize the supplied text."
+    },
+
+    "instruction_following": {
+      "2": "All explicit instructions are satisfied.",
+      "1": "The core request is answered but one or more explicit constraints are violated.",
+      "0": "A major instruction or requested format is ignored."
+    },
+
+    "classification": {
+      "2": "Correct class/label is clearly returned.",
+      "1": "Classification is ambiguous or partly correct.",
+      "0": "Classification is incorrect or missing."
+    },
+
+    "information_extraction": {
+      "2": "All requested information is extracted correctly.",
+      "1": "Some requested information is correct but one or more fields are missing/incorrect.",
+      "0": "The extracted information is materially incorrect or missing."
+    },
+
+    "coding": {
+      "2": "Code satisfies the task and is technically correct for the stated requirements.",
+      "1": "Code is mostly correct but has a minor bug, omission, or requirement mismatch.",
+      "0": "Code is fundamentally incorrect or does not solve the requested task."
+    },
+
+    "structured_output": {
+      "2": "Required structure and semantic content are both correct.",
+      "1": "Structure/content is partially correct but one or more requirements are not fully satisfied.",
+      "0": "Required structure is unusable or content is materially incorrect."
+    }
+  }
+}

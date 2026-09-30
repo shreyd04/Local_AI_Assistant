@@ -6,7 +6,7 @@ from ollama import Client
 
 
 OLLAMA_HOST = "http://localhost:11434"
-MODEL_NAME = "llama3.2:3b"
+MODEL_NAME = "mistral:7b-instruct-v0.3-q5_K_M"
 
 client = Client(host=OLLAMA_HOST)
 
@@ -24,7 +24,7 @@ def generate_response(
     prompt: str,
     temperature: float = 0.0,
     model: Optional[str] = None,
-    num_predict: Optional[int] = 256,
+    num_predict: Optional[int] = 512,
 ) -> GenerationResult:
 
     selected_model = model or MODEL_NAME
@@ -45,11 +45,21 @@ def generate_response(
     stream = client.chat(
         model=selected_model,
         messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            }
-        ],
+         {
+             "role": "system",
+             "content": (
+                 "Answer the user's question clearly and concisely. "
+                 "Use short paragraphs and Markdown lists when appropriate. "
+                 "Stay focused on the question. "
+                 "Do not add unnecessary background information. "
+                 "Always finish the answer completely."
+             ),
+         },
+         {
+             "role": "user",
+             "content": prompt,
+         },
+         ],
         options=options,
         stream=True,
     )

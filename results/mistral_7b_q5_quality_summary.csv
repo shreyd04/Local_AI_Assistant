@@ -1,0 +1,2 @@
+model,scored_prompts,mean_quality_score,quality_percentage,correctness_mean,instruction_adherence_mean,completeness_mean
+mistral:7b-instruct-v0.3-q5_K_M,40,2.0,100.0,2.0,2.0,2.0

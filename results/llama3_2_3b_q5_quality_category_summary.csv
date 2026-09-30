@@ -1,0 +1,9 @@
+category,scored_prompts,mean_quality_score,correctness_mean,instruction_adherence_mean,completeness_mean
+classification,5,1.6,1.6,1.6,1.6
+coding,5,2.0,2.0,2.0,2.0
+factual,5,2.0,2.0,2.0,2.0
+information_extraction,5,2.0,2.0,2.0,2.0
+instruction_following,5,2.0,2.0,2.0,2.0
+reasoning,5,2.0,2.0,2.0,2.0
+structured_output,5,2.0,2.0,2.0,2.0
+summarization,5,2.0,2.0,2.0,2.0
