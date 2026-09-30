@@ -606,14 +606,17 @@ containerization
 streaming token display in the frontend
 20. Screenshots
 
-<img width="1440" height="825" alt="Screenshot 2026-09-30 at 5 19 02 PM" src="https://github.com/user-attachments/assets/02180f22-e690-4ead-8fe7-41eff4ee2b2e" />
 Chat Interface
 
-<img width="1440" height="858" alt="Screenshot 2026-09-30 at 5 27 49 PM" src="https://github.com/user-attachments/assets/b2f06ab9-1bf5-43c8-bfef-b70dd608fb92" />
+<img width="1440" height="825" alt="Screenshot 2026-09-30 at 5 19 02 PM" src="https://github.com/user-attachments/assets/02180f22-e690-4ead-8fe7-41eff4ee2b2e" />
+
 Structured Output
 
-<img width="252" height="818" alt="Screenshot 2026-09-30 at 8 33 22 PM" src="https://github.com/user-attachments/assets/de15a5a0-5069-4467-8e62-6f85226ad349" />
+<img width="1440" height="858" alt="Screenshot 2026-09-30 at 5 27 49 PM" src="https://github.com/user-attachments/assets/b2f06ab9-1bf5-43c8-bfef-b70dd608fb92" />
+
 Benchmark Results
+
+<img width="252" height="818" alt="Screenshot 2026-09-30 at 8 33 22 PM" src="https://github.com/user-attachments/assets/de15a5a0-5069-4467-8e62-6f85226ad349" />
 
 21. Demo
 
