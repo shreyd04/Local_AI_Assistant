@@ -1,4 +1,4 @@
-#### Local AI Assistant
+# Local AI Assistant
 
 An offline local-LLM assistant for low-latency inference, structured JSON generation, and reproducible benchmarking of local model behavior using Ollama.
 
@@ -130,7 +130,7 @@ temperature effect
 prompt-by-prompt and aggregate statistics
 The repository indicates the same prompt set and settings were reused within a benchmark run for comparison. It does not make universal claims across all hardware; benchmark output is hardware- and runtime-dependent.
 
-## Q4 memory note
+### Q4 memory note
 The repository includes Q5 quantization scripts and verified Q5 outputs, but no validated Q4 Mistral memory summary was found in the checked files. For that reason, this README does not use unverified Q4 Mistral memory values for quantitative comparison.
 
 ### 7. Quantitative Results
@@ -151,7 +151,7 @@ Cold vs. warm measurement from cold_warm_benchmark.csv
 
 This is a good example of the cold-start penalty: the cold TTFT is about 42× larger than the warm minimum and more than 40× larger than the warm median range shown in the file.
 
-## Summary file notes
+### Summary file notes
 
 The repository includes benchmark_summary.csv, but the line in the tool output was truncated. Because the project instructions emphasize verifying numbers before publishing them, this README does not include exact summary values beyond the explicit values above. The benchmark scripts themselves are the authoritative source for how those aggregate metrics are generated.
 
@@ -200,17 +200,17 @@ results are useful for relative comparison, not absolute truth
 
 The FastAPI app in app/main.py implements the endpoints below.
 
-## GET /
+### GET /
 
 <img width="676" height="139" alt="Screenshot 2026-10-11 at 11 27 33 AM" src="https://github.com/user-attachments/assets/1bfe8405-21b1-4521-85f0-45068c5ae065" />
 
 
-## GET /health
+### GET /health
 
 <img width="676" height="139" alt="Screenshot 2026-10-11 at 11 27 42 AM" src="https://github.com/user-attachments/assets/96ca6086-b0c5-4dd6-9f6e-b7e0f860a759" />
 
 
-## POST /chat
+### POST /chat
 
 Request body:
 
@@ -222,7 +222,7 @@ Response model:
 <img width="676" height="191" alt="Screenshot 2026-10-11 at 11 28 04 AM" src="https://github.com/user-attachments/assets/22c5ce84-82dd-4552-9aa9-f7f3499cfa87" />
 
 
-## POST /structured-chat
+### POST /structured-chat
 
 Request body:
 
@@ -234,7 +234,7 @@ Response model:
 <img width="676" height="219" alt="Screenshot 2026-10-11 at 11 28 19 AM" src="https://github.com/user-attachments/assets/3a3098e4-9b50-41f4-826d-10edafe3c78d" />
 
 
-## Example curl calls
+### Example curl calls
 
 <img width="676" height="188" alt="Screenshot 2026-10-11 at 11 28 27 AM" src="https://github.com/user-attachments/assets/8e19c9e7-3ef7-442b-a082-b984ccc1f513" />
 
@@ -243,7 +243,7 @@ Response model:
 
 The project’s structured output flow is implemented in app/structured_output.py and validated by tests/test_structured_output.py.
 
-# How it works
+#### How it works
 
 A Pydantic model is defined in app/schemas.py
 JSON schema is derived with model_json_schema()
@@ -258,9 +258,9 @@ Python
 <img width="676" height="226" alt="Screenshot 2026-10-11 at 11 28 36 AM" src="https://github.com/user-attachments/assets/1af3f091-042a-4e0f-878f-bc5430139034" />
 
 
-## Representative response
+#### Representative response
 
-## JSON
+### JSON
 {
   "answer": "A database index improves lookup performance by reducing the amount of data scanned.",
   "key_points": [
@@ -271,11 +271,11 @@ Python
   "category": "explanation"
 }
 
-# Failure behavior
+#### Failure behavior
 
 The code retries once by default and then raises:
 
-# Python
+#### Python
 
 StructuredOutputError(
     "Structured output remained invalid after 2 attempt(s). Validation error: ..."
@@ -286,7 +286,7 @@ StructuredOutputError(
 
 The frontend is implemented under frontend/ and is a plain web app with no npm dependencies.
 
-# Features in the repo
+#### Features in the repo
 
 chat interface
 backend status indicator
@@ -298,46 +298,46 @@ responsive layout
 markdown rendering for assistant responses
 Run locally
 
-# bash
+#### bash
 python -m http.server 5500 --directory frontend
 
-# Then open:
-# Text
+#### Then open:
+#### Text
 http://127.0.0.1:5500
 
-# The frontend calls the backend at:
-# Text
+#### The frontend calls the backend at:
+#### Text
 http://127.0.0.1:8000
 
 
 ### 12. Installation
 
-## Prerequisites
+#### Prerequisites
 
 Python 3.9 or later
 Ollama installed locally
 Git
 Clone
 
-# bash
+#### bash
 git clone https://github.com/shreyd04/Local_AI_Assistant.git
 cd Local_AI_Assistant
 
-## Create a virtual environment
+#### Create a virtual environment
 
-# bash
+#### bash
 python3 -m venv .venv
 source .venv/bin/activate
 
 
-## Install dependencies
+#### Install dependencies
 
-# bash
+#### bash
 pip install -r requirements.txt
 
-## The project dependencies are exactly those in requirements.txt:
+#### The project dependencies are exactly those in requirements.txt:
 
-# Text
+#### Text
 fastapi
 uvicorn[standard]
 ollama
@@ -346,69 +346,74 @@ psutil
 httpx
 pytest
 
-## Ollama prerequisite
+#### Ollama prerequisite
 
 Install Ollama using the official installer instructions at:
 
-# Text
+#### Text
 https://ollama.ai
 
-# # Then pull the default model used in the project:
+#### Then pull the default model used in the project:
 
 bash
 ollama pull mistral:7b-instruct-v0.3-q5_K_M
 
 
-### 13. Running the Application
+## 13. Running the Application
 
 Start Ollama
 
-# bash
+#### bash
 ollama serve
 Start the backend
 
-# bash
+#### bash
 source .venv/bin/activate
+
 cd Local_AI_Assistant
 
-# python 
+#### python 
+
 -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 
-## Test the backend
+#### Test the backend
 
-# bash
+#### bash
+
 curl http://127.0.0.1:8000/health
 
-## Start the frontend
+#### Start the frontend
 
-# bash
+#### bash
 
-# python
+#### python
+
 -m http.server 5500 --directory frontend
 
-## Open the browser
+#### Text
 
-# Text
 http://127.0.0.1:5500
 
-## Try a prompt
+#### Try a prompt
+
 Example prompts:
 
 “Explain what an API is.”
 “What is a database index and why is it useful?”
 “Compare a process and a thread in operating systems.”
 
-## Toggle Structured JSON mode
+#### Toggle Structured JSON mode
 
 
-### 14. Benchmark Reproduction
+## 14. Benchmark Reproduction
 
 These commands are the ones implemented in the project by script names under app/:
 
 Baseline benchmark
 
-# bash
+#### bash
 python -m app.benchmark
+
 What it measures:
 
 TTFT
@@ -422,37 +427,53 @@ benchmark_results_raw.csv
 benchmark_summary.csv
 Cold/warm benchmark
 
-bash
-python -m app.cold_warm_benchmark
+#### bash
+
+python 
+
+-m app.cold_warm_benchmark
+
 What it measures:
 
 cold start after unloading the model
 warm measurements after warm-up
 TTFT, latency, throughput, memory
+
 Output:
 
 cold_warm_benchmark.csv
 Temperature benchmark
 
 bash
-python -m app.temperature_benchmark
+
+python
+
+-m app.temperature_benchmark
+
+
 What it measures:
 
 temperature = 0.0 and 0.7
 prompt-by-prompt repeated runs
 TTFT, latency, throughput, output token count
+
+
 Output:
 
 temperature_results.csv
 Structured output benchmark
 
 bash
-python -m app.structured_benchmark
+
+python 
+-m app.structured_benchmark
+
 What it measures:
 
 success/failure on structured-output prompts
 number of attempts
 validation retry behavior
+
 Output:
 
 structured_results.csv
