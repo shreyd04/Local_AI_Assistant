@@ -1,4 +1,4 @@
-Local AI Assistant
+#### Local AI Assistant
 
 An offline local-LLM assistant for low-latency inference, structured JSON generation, and reproducible benchmarking of local model behavior using Ollama.
 
@@ -69,7 +69,7 @@ Local model: the Ollama model served locally on the machine.
 <img width="676" height="253" alt="Screenshot 2026-10-11 at 11 25 07 AM" src="https://github.com/user-attachments/assets/3ea9ccf1-9606-4ac7-bcd7-aa947422f736" />
 
 
-## Important Files :
+### Important Files :
 
 app/main.py: FastAPI app and actual HTTP endpoints
 app/ollama_client.py: model invocation, streaming response handling, and timing calculations
