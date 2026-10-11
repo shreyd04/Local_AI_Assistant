@@ -119,10 +119,8 @@ tests/test_structured_output.py: tests for structured output validation and retr
 
 The repository includes benchmark scripts and result files for the following model names that are directly confirmed in code and CSV outputs:
 
-Model	Variant / Note	Confirmed in
-mistral:7b-instruct-v0.3-q5_K_M	Q5 quantized Mistral 7B	app/ollama_client.py, frontend/index.html, benchmark results
-llama3.2:3b	Llama 3.2 3B	cold_warm_benchmark.csv, benchmark_summary.csv, benchmark_results.csv
-phi3.5 / Phi benchmark script	Q5-related benchmark script exists	app/phi_q5_benchmark.py
+<img width="1148" height="202" alt="Screenshot 2026-10-11 at 10 58 19 AM" src="https://github.com/user-attachments/assets/54f28923-7532-4fbf-b51f-28f7335fb0e7" />
+
 The repository is explicit about model-level benchmarking and quantization experiments, but it does not claim that any model is universally “best.” It documents performance observations rather than ranking models.
 
 6. Benchmark Methodology
@@ -172,28 +170,16 @@ The repository contains actual CSV files that provide verified benchmark data.
 
 Sample benchmark rows from benchmark_results.csv
 
-prompt_id	ttft_ms	total_latency_ms	output_tokens	tokens_per_second
-1	413.4662499418482	22589.642124949023	251	11.318452803347403
-2	499.6465001022443	63405.58783302549	592	9.41087578464013
-3	383.1620829878375	49594.605625025	601	12.212606595996656
-4	387.7634999807924	42134.84874996357	531	12.719450874722304
-5	317.02695903368294	30416.23641701881	391	12.990374399892096
+<img width="715" height="219" alt="Screenshot 2026-10-11 at 11 00 19 AM" src="https://github.com/user-attachments/assets/6209a06d-f078-40bb-add8-4c43f785650e" />
+
+
 These values are directly from the repository CSV and are not inferred.
 
 Cold vs. warm measurement from cold_warm_benchmark.csv
 
-Phase	run	ttft_ms	latency_ms	tokens	tokens_per_second	model_memory_mb
-Cold	1	4182.542749913409	33228.12741599046	341	11.740166497604061	2358.640625
-Warm	1	97.81224990729243	24646.449416992255	313	12.750198630972202	2358.390625
-Warm	2	97.9731660336256	24191.763541079126	313	12.990899112502506	2359.265625
-Warm	3	88.43891602009535	27758.42662504874	313	11.311895158445225	2355.71875
-Warm	4	147.56958303041756	40324.58508305717	313	7.790523912852401	2354.0625
-Warm	5	142.9639169946313	32579.142041970044	313	9.64971886620003	2354.4375
-Warm	6	120.57579203974456	26940.324292052537	313	11.670504665614247	2355.09375
-Warm	7	98.05558307562023	25470.435666036792	313	12.336249062034003	2355.15625
-Warm	8	97.45500003919005	25957.180291996337	313	12.10376353446217	2355.03125
-Warm	9	81.6492090234533	26353.887042030692	313	11.913716752623223	2355.28125
-Warm	10	80.37933299783617	25480.349082965404	313	12.322849321519355	2355.59375
+<img width="1218" height="429" alt="Screenshot 2026-10-11 at 11 20 38 AM" src="https://github.com/user-attachments/assets/a355b354-d6f4-412d-881a-567ec767b2fe" />
+
+
 This is a good example of the cold-start penalty: the cold TTFT is about 42× larger than the warm minimum and more than 40× larger than the warm median range shown in the file.
 
 Summary file notes
