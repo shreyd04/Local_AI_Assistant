@@ -63,46 +63,9 @@ System metrics: checks CPU/RSS memory usage for the current Python process and t
 Local model: the Ollama model served locally on the machine.
 4. Repository Structure
 
-Text
-Local_AI_Assistant/
-├── app/
-│   ├── __init__.py
-│   ├── benchmark.py
-│   ├── cold_warm_benchmark.py
-│   ├── main.py
-│   ├── model_benchmark.py
-│   ├── mistral_q5_benchmark.py
-│   ├── ollama_client.py
-│   ├── phi_q5_benchmark.py
-│   ├── quality_evaluator.py
-│   ├── quantization_benchmark.py
-│   ├── schemas.py
-│   ├── structured_benchmark.py
-│   ├── structured_output.py
-│   ├── system_metrics.py
-│   ├── temperature_benchmark.py
-│   └── update_quality_scores.py
-├── benchmarks/
-│   ├── prompts.json
-│   └── quality_rubric.json
-├── frontend/
-│   ├── README.md
-│   ├── app.js
-│   ├── index.html
-│   └── styles.css
-├── tests/
-│   └── test_structured_output.py
-├── benchmark_results.csv
-├── benchmark_results_raw.csv
-├── benchmark_summary.csv
-├── cold_warm_benchmark.csv
-├── structured_results.csv
-├── temperature_results.csv
-├── requirements.txt
-├── .gitignore
-├── README.md
-└── results/
-Important files
+<img width="676" height="540" alt="Screenshot 2026-10-11 at 11 24 55 AM" src="https://github.com/user-attachments/assets/0b4b3a5c-e9a3-4fe6-a7a6-497e5816c620" />
+<img width="676" height="253" alt="Screenshot 2026-10-11 at 11 25 07 AM" src="https://github.com/user-attachments/assets/3ea9ccf1-9606-4ac7-bcd7-aa947422f736" />
+
 
 app/main.py: FastAPI app and actual HTTP endpoints
 app/ollama_client.py: model invocation, streaming response handling, and timing calculations
@@ -120,6 +83,7 @@ tests/test_structured_output.py: tests for structured output validation and retr
 The repository includes benchmark scripts and result files for the following model names that are directly confirmed in code and CSV outputs:
 
 <img width="1148" height="202" alt="Screenshot 2026-10-11 at 10 58 19 AM" src="https://github.com/user-attachments/assets/54f28923-7532-4fbf-b51f-28f7335fb0e7" />
+
 
 The repository is explicit about model-level benchmarking and quantization experiments, but it does not claim that any model is universally “best.” It documents performance observations rather than ranking models.
 
@@ -232,74 +196,43 @@ The FastAPI app in app/main.py implements the endpoints below.
 
 GET /
 
-JSON
-{
-  "name": "Local AI Assistant",
-  "status": "running",
-  "model": "mistral:7b-instruct-v0.3-q5_K_M",
-  "mode": "offline"
-}
+<img width="676" height="139" alt="Screenshot 2026-10-11 at 11 27 33 AM" src="https://github.com/user-attachments/assets/1bfe8405-21b1-4521-85f0-45068c5ae065" />
+
+
 GET /health
 
-JSON
-{
-  "status": "healthy",
-  "model": "mistral:7b-instruct-v0.3-q5_K_M",
-  "ollama": "localhost:11434"
-}
+<img width="676" height="139" alt="Screenshot 2026-10-11 at 11 27 42 AM" src="https://github.com/user-attachments/assets/96ca6086-b0c5-4dd6-9f6e-b7e0f860a759" />
+
+
 POST /chat
 
 Request body:
 
-JSON
-{
-  "prompt": "Explain what an API is.",
-  "temperature": 0.0
-}
+<img width="676" height="107" alt="Screenshot 2026-10-11 at 11 27 51 AM" src="https://github.com/user-attachments/assets/7eb85b2f-4e47-43ad-923a-320573e20919" />
+
+
 Response model:
 
-JSON
-{
-  "response": "string",
-  "model": "string",
-  "temperature": 0.0,
-  "ttft_ms": 0.0,
-  "total_latency_ms": 0.0,
-  "output_tokens": 0,
-  "tokens_per_second": 0.0
-}
+<img width="676" height="191" alt="Screenshot 2026-10-11 at 11 28 04 AM" src="https://github.com/user-attachments/assets/22c5ce84-82dd-4552-9aa9-f7f3499cfa87" />
+
+
 POST /structured-chat
 
 Request body:
 
-JSON
-{
-  "prompt": "Explain what an API is.",
-  "temperature": 0.0
-}
+<img width="676" height="106" alt="Screenshot 2026-10-11 at 11 28 13 AM" src="https://github.com/user-attachments/assets/87ccd587-2941-421a-9f68-29fb028e2890" />
+
+
 Response model:
 
-JSON
-{
-  "result": {
-    "answer": "string",
-    "key_points": ["string"],
-    "category": "definition"
-  },
-  "model": "string",
-  "attempts": 1
-}
+<img width="676" height="219" alt="Screenshot 2026-10-11 at 11 28 19 AM" src="https://github.com/user-attachments/assets/3a3098e4-9b50-41f4-826d-10edafe3c78d" />
+
+
 Example curl calls
 
-bash
-curl -X GET http://127.0.0.1:8000/
-curl -X GET http://127.0.0.1:8000/health
-curl -X POST http://127.0.0.1:8000/chat \
-  -H "Content-Type: application/json" \
-  -d '{"prompt":"Explain what an API is.","temperature":0.0}'
-curl -X POST http://127.0.0.1:8000/structured-chat \
-  -H "Content-Type: application/json" \
-  -d '{"prompt":"Explain what an API is.","temperature":0.0}'
+<img width="676" height="188" alt="Screenshot 2026-10-11 at 11 28 27 AM" src="https://github.com/user-attachments/assets/8e19c9e7-3ef7-442b-a082-b984ccc1f513" />
+
+
 10. Structured Output
 
 The project’s structured output flow is implemented in app/structured_output.py and validated by tests/test_structured_output.py.
@@ -315,16 +248,10 @@ If validation still fails, the code raises a StructuredOutputError
 Schema
 
 Python
-class StructuredAssistantResponse(BaseModel):
-    answer: str = Field(..., min_length=1)
-    key_points: list[str] = Field(..., min_length=1, max_length=5)
-    category: Literal[
-        "definition",
-        "explanation",
-        "comparison",
-        "problem_solving",
-        "other",
-    ]
+
+<img width="676" height="226" alt="Screenshot 2026-10-11 at 11 28 36 AM" src="https://github.com/user-attachments/assets/1af3f091-042a-4e0f-878f-bc5430139034" />
+
+
 Representative response
 
 JSON
