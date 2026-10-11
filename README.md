@@ -2,7 +2,7 @@ Local AI Assistant
 
 An offline local-LLM assistant for low-latency inference, structured JSON generation, and reproducible benchmarking of local model behavior using Ollama.
 
-1. Overview
+### 1. Overview
 
 This project is a local-first LLM experimentation and benchmarking workspace built around Ollama. It allows a developer to run a local model without a cloud dependency, measure generation behavior, validate structured output, and compare model/runtime characteristics under controlled conditions.
 
@@ -16,7 +16,7 @@ benchmark scripts for runtime and memory measurement
 automated quality-scoring workflows using a local LLM as an evaluator
 The emphasis is on local/offline inference, privacy, reproducibility, and measurement rather than production deployment or cloud orchestration.
 
-2. Key Features
+### 2. Key Features
 
 The following features are implemented in the repository and verified in source:
 
@@ -38,7 +38,8 @@ Cold/warm model benchmarking
 Multi-model benchmark script support
 Automated quality scoring workflow
 Test coverage for structured-output validation
-3. System Architecture
+
+### 3. System Architecture
 
 Mermaid
 graph TD
@@ -61,11 +62,14 @@ Ollama client: handles model inference, streaming, and timing measurements.
 Structured output module: builds a JSON schema from a Pydantic model, submits it to the model, validates the result, and retries once on failure.
 System metrics: checks CPU/RSS memory usage for the current Python process and the running llama-server process.
 Local model: the Ollama model served locally on the machine.
-4. Repository Structure
+
+### 4. Repository Structure
 
 <img width="676" height="540" alt="Screenshot 2026-10-11 at 11 24 55 AM" src="https://github.com/user-attachments/assets/0b4b3a5c-e9a3-4fe6-a7a6-497e5816c620" />
 <img width="676" height="253" alt="Screenshot 2026-10-11 at 11 25 07 AM" src="https://github.com/user-attachments/assets/3ea9ccf1-9606-4ac7-bcd7-aa947422f736" />
 
+
+## Important Files :
 
 app/main.py: FastAPI app and actual HTTP endpoints
 app/ollama_client.py: model invocation, streaming response handling, and timing calculations
@@ -78,7 +82,9 @@ benchmarks/prompts.json: benchmark prompt set
 benchmarks/quality_rubric.json: scoring rubric for automated quality evaluation
 frontend/app.js: browser-side API client and metrics display
 tests/test_structured_output.py: tests for structured output validation and retry logic
-5. Models Evaluated
+
+
+### 5. Models Evaluated
 
 The repository includes benchmark scripts and result files for the following model names that are directly confirmed in code and CSV outputs:
 
@@ -87,7 +93,7 @@ The repository includes benchmark scripts and result files for the following mod
 
 The repository is explicit about model-level benchmarking and quantization experiments, but it does not claim that any model is universally “best.” It documents performance observations rather than ranking models.
 
-6. Benchmark Methodology
+### 6. Benchmark Methodology
 
 The benchmark system is implemented primarily in:
 
@@ -124,11 +130,10 @@ temperature effect
 prompt-by-prompt and aggregate statistics
 The repository indicates the same prompt set and settings were reused within a benchmark run for comparison. It does not make universal claims across all hardware; benchmark output is hardware- and runtime-dependent.
 
-Q4 memory note
-
+## Q4 memory note
 The repository includes Q5 quantization scripts and verified Q5 outputs, but no validated Q4 Mistral memory summary was found in the checked files. For that reason, this README does not use unverified Q4 Mistral memory values for quantitative comparison.
 
-7. Quantitative Results
+### 7. Quantitative Results
 
 The repository contains actual CSV files that provide verified benchmark data.
 
@@ -146,11 +151,11 @@ Cold vs. warm measurement from cold_warm_benchmark.csv
 
 This is a good example of the cold-start penalty: the cold TTFT is about 42× larger than the warm minimum and more than 40× larger than the warm median range shown in the file.
 
-Summary file notes
+## Summary file notes
 
 The repository includes benchmark_summary.csv, but the line in the tool output was truncated. Because the project instructions emphasize verifying numbers before publishing them, this README does not include exact summary values beyond the explicit values above. The benchmark scripts themselves are the authoritative source for how those aggregate metrics are generated.
 
-8. Quality Evaluation
+### 8. Quality Evaluation
 
 The project includes an automated quality-evaluation workflow:
 
@@ -181,7 +186,7 @@ calculate a quality score as the mean of the three dimensions
 save evaluation and summary CSVs
 This workflow is not presented as human ground truth. It is an automated evaluation process with its own biases and limits.
 
-Limitations
+### Limitations
 
 The repository explicitly frames this as an automated evaluation workflow rather than a substitute for human judgment. Important limitations include:
 
@@ -190,21 +195,22 @@ the score reflects local LLM behavior and prompt phrasing
 the benchmark set is limited
 one model acting as judge can be biased toward similar outputs
 results are useful for relative comparison, not absolute truth
-9. API
+
+### 9. API
 
 The FastAPI app in app/main.py implements the endpoints below.
 
-GET /
+## GET /
 
 <img width="676" height="139" alt="Screenshot 2026-10-11 at 11 27 33 AM" src="https://github.com/user-attachments/assets/1bfe8405-21b1-4521-85f0-45068c5ae065" />
 
 
-GET /health
+## GET /health
 
 <img width="676" height="139" alt="Screenshot 2026-10-11 at 11 27 42 AM" src="https://github.com/user-attachments/assets/96ca6086-b0c5-4dd6-9f6e-b7e0f860a759" />
 
 
-POST /chat
+## POST /chat
 
 Request body:
 
@@ -216,7 +222,7 @@ Response model:
 <img width="676" height="191" alt="Screenshot 2026-10-11 at 11 28 04 AM" src="https://github.com/user-attachments/assets/22c5ce84-82dd-4552-9aa9-f7f3499cfa87" />
 
 
-POST /structured-chat
+## POST /structured-chat
 
 Request body:
 
@@ -228,16 +234,16 @@ Response model:
 <img width="676" height="219" alt="Screenshot 2026-10-11 at 11 28 19 AM" src="https://github.com/user-attachments/assets/3a3098e4-9b50-41f4-826d-10edafe3c78d" />
 
 
-Example curl calls
+## Example curl calls
 
 <img width="676" height="188" alt="Screenshot 2026-10-11 at 11 28 27 AM" src="https://github.com/user-attachments/assets/8e19c9e7-3ef7-442b-a082-b984ccc1f513" />
 
 
-10. Structured Output
+### 10. Structured Output
 
 The project’s structured output flow is implemented in app/structured_output.py and validated by tests/test_structured_output.py.
 
-How it works
+# How it works
 
 A Pydantic model is defined in app/schemas.py
 JSON schema is derived with model_json_schema()
@@ -252,9 +258,9 @@ Python
 <img width="676" height="226" alt="Screenshot 2026-10-11 at 11 28 36 AM" src="https://github.com/user-attachments/assets/1af3f091-042a-4e0f-878f-bc5430139034" />
 
 
-Representative response
+## Representative response
 
-JSON
+## JSON
 {
   "answer": "A database index improves lookup performance by reducing the amount of data scanned.",
   "key_points": [
@@ -264,19 +270,23 @@ JSON
   ],
   "category": "explanation"
 }
-Failure behavior
+
+# Failure behavior
 
 The code retries once by default and then raises:
 
-Python
+# Python
+
 StructuredOutputError(
     "Structured output remained invalid after 2 attempt(s). Validation error: ..."
 )
-11. Frontend
+
+
+### 11. Frontend
 
 The frontend is implemented under frontend/ and is a plain web app with no npm dependencies.
 
-Features in the repo
+# Features in the repo
 
 chat interface
 backend status indicator
@@ -288,40 +298,46 @@ responsive layout
 markdown rendering for assistant responses
 Run locally
 
-bash
+# bash
 python -m http.server 5500 --directory frontend
-Then open:
 
-Text
+# Then open:
+# Text
 http://127.0.0.1:5500
-The frontend calls the backend at:
 
-Text
+# The frontend calls the backend at:
+# Text
 http://127.0.0.1:8000
-12. Installation
 
-Prerequisites
+
+### 12. Installation
+
+## Prerequisites
 
 Python 3.9 or later
 Ollama installed locally
 Git
 Clone
 
-bash
+# bash
 git clone https://github.com/shreyd04/Local_AI_Assistant.git
 cd Local_AI_Assistant
-Create a virtual environment
 
-bash
+## Create a virtual environment
+
+# bash
 python3 -m venv .venv
 source .venv/bin/activate
-Install dependencies
 
-bash
+
+## Install dependencies
+
+# bash
 pip install -r requirements.txt
-The project dependencies are exactly those in requirements.txt:
 
-Text
+## The project dependencies are exactly those in requirements.txt:
+
+# Text
 fastapi
 uvicorn[standard]
 ollama
@@ -329,49 +345,69 @@ pydantic
 psutil
 httpx
 pytest
-Ollama prerequisite
+
+## Ollama prerequisite
 
 Install Ollama using the official installer instructions at:
 
-Text
+# Text
 https://ollama.ai
-Then pull the default model used in the project:
+
+# # Then pull the default model used in the project:
 
 bash
 ollama pull mistral:7b-instruct-v0.3-q5_K_M
-13. Running the Application
+
+
+### 13. Running the Application
 
 Start Ollama
-bash
+
+# bash
 ollama serve
 Start the backend
-bash
+
+# bash
 source .venv/bin/activate
 cd Local_AI_Assistant
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-Test the backend
-bash
+
+# python 
+-m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+
+## Test the backend
+
+# bash
 curl http://127.0.0.1:8000/health
-Start the frontend
-bash
-python -m http.server 5500 --directory frontend
-Open the browser
-Text
+
+## Start the frontend
+
+# bash
+
+# python
+-m http.server 5500 --directory frontend
+
+## Open the browser
+
+# Text
 http://127.0.0.1:5500
-Try a prompt
+
+## Try a prompt
 Example prompts:
 
 “Explain what an API is.”
 “What is a database index and why is it useful?”
 “Compare a process and a thread in operating systems.”
-Toggle Structured JSON mode
-14. Benchmark Reproduction
+
+## Toggle Structured JSON mode
+
+
+### 14. Benchmark Reproduction
 
 These commands are the ones implemented in the project by script names under app/:
 
 Baseline benchmark
 
-bash
+# bash
 python -m app.benchmark
 What it measures:
 
