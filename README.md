@@ -2,7 +2,7 @@
 
 An offline local-LLM assistant for low-latency inference, structured JSON generation, and reproducible benchmarking of local model behavior using Ollama.
 
-### 1. Overview
+## 1. Overview
 
 This project is a local-first LLM experimentation and benchmarking workspace built around Ollama. It allows a developer to run a local model without a cloud dependency, measure generation behavior, validate structured output, and compare model/runtime characteristics under controlled conditions.
 
@@ -16,7 +16,7 @@ benchmark scripts for runtime and memory measurement
 automated quality-scoring workflows using a local LLM as an evaluator
 The emphasis is on local/offline inference, privacy, reproducibility, and measurement rather than production deployment or cloud orchestration.
 
-### 2. Key Features
+## 2. Key Features
 
 The following features are implemented in the repository and verified in source:
 
@@ -39,7 +39,7 @@ Multi-model benchmark script support
 Automated quality scoring workflow
 Test coverage for structured-output validation
 
-### 3. System Architecture
+## 3. System Architecture
 
 Mermaid
 graph TD
@@ -63,7 +63,7 @@ Structured output module: builds a JSON schema from a Pydantic model, submits it
 System metrics: checks CPU/RSS memory usage for the current Python process and the running llama-server process.
 Local model: the Ollama model served locally on the machine.
 
-### 4. Repository Structure
+## 4. Repository Structure
 
 <img width="676" height="540" alt="Screenshot 2026-10-11 at 11 24 55 AM" src="https://github.com/user-attachments/assets/0b4b3a5c-e9a3-4fe6-a7a6-497e5816c620" />
 <img width="676" height="253" alt="Screenshot 2026-10-11 at 11 25 07 AM" src="https://github.com/user-attachments/assets/3ea9ccf1-9606-4ac7-bcd7-aa947422f736" />
@@ -84,7 +84,7 @@ frontend/app.js: browser-side API client and metrics display
 tests/test_structured_output.py: tests for structured output validation and retry logic
 
 
-### 5. Models Evaluated
+## 5. Models Evaluated
 
 The repository includes benchmark scripts and result files for the following model names that are directly confirmed in code and CSV outputs:
 
@@ -93,7 +93,7 @@ The repository includes benchmark scripts and result files for the following mod
 
 The repository is explicit about model-level benchmarking and quantization experiments, but it does not claim that any model is universally “best.” It documents performance observations rather than ranking models.
 
-### 6. Benchmark Methodology
+## 6. Benchmark Methodology
 
 The benchmark system is implemented primarily in:
 
@@ -133,7 +133,7 @@ The repository indicates the same prompt set and settings were reused within a b
 ### Q4 memory note
 The repository includes Q5 quantization scripts and verified Q5 outputs, but no validated Q4 Mistral memory summary was found in the checked files. For that reason, this README does not use unverified Q4 Mistral memory values for quantitative comparison.
 
-### 7. Quantitative Results
+## 7. Quantitative Results
 
 The repository contains actual CSV files that provide verified benchmark data.
 
@@ -155,7 +155,7 @@ This is a good example of the cold-start penalty: the cold TTFT is about 42× la
 
 The repository includes benchmark_summary.csv, but the line in the tool output was truncated. Because the project instructions emphasize verifying numbers before publishing them, this README does not include exact summary values beyond the explicit values above. The benchmark scripts themselves are the authoritative source for how those aggregate metrics are generated.
 
-### 8. Quality Evaluation
+## 8. Quality Evaluation
 
 The project includes an automated quality-evaluation workflow:
 
@@ -196,7 +196,7 @@ the benchmark set is limited
 one model acting as judge can be biased toward similar outputs
 results are useful for relative comparison, not absolute truth
 
-### 9. API
+## 9. API
 
 The FastAPI app in app/main.py implements the endpoints below.
 
@@ -239,7 +239,7 @@ Response model:
 <img width="676" height="188" alt="Screenshot 2026-10-11 at 11 28 27 AM" src="https://github.com/user-attachments/assets/8e19c9e7-3ef7-442b-a082-b984ccc1f513" />
 
 
-### 10. Structured Output
+## 10. Structured Output
 
 The project’s structured output flow is implemented in app/structured_output.py and validated by tests/test_structured_output.py.
 
@@ -260,7 +260,7 @@ Python
 
 #### Representative response
 
-### JSON
+#### JSON
 {
   "answer": "A database index improves lookup performance by reducing the amount of data scanned.",
   "key_points": [
@@ -282,7 +282,7 @@ StructuredOutputError(
 )
 
 
-### 11. Frontend
+## 11. Frontend
 
 The frontend is implemented under frontend/ and is a plain web app with no npm dependencies.
 
@@ -320,24 +320,30 @@ Git
 Clone
 
 #### bash
+
 git clone https://github.com/shreyd04/Local_AI_Assistant.git
+
 cd Local_AI_Assistant
 
 #### Create a virtual environment
 
 #### bash
+
 python3 -m venv .venv
+
 source .venv/bin/activate
 
 
 #### Install dependencies
 
 #### bash
+
 pip install -r requirements.txt
 
 #### The project dependencies are exactly those in requirements.txt:
 
 #### Text
+
 fastapi
 uvicorn[standard]
 ollama
@@ -351,11 +357,13 @@ pytest
 Install Ollama using the official installer instructions at:
 
 #### Text
+
 https://ollama.ai
 
 #### Then pull the default model used in the project:
 
-bash
+#### bash
+
 ollama pull mistral:7b-instruct-v0.3-q5_K_M
 
 
@@ -364,10 +372,13 @@ ollama pull mistral:7b-instruct-v0.3-q5_K_M
 Start Ollama
 
 #### bash
+
 ollama serve
+
 Start the backend
 
 #### bash
+
 source .venv/bin/activate
 
 cd Local_AI_Assistant
@@ -398,9 +409,9 @@ http://127.0.0.1:5500
 
 Example prompts:
 
-“Explain what an API is.”
-“What is a database index and why is it useful?”
-“Compare a process and a thread in operating systems.”
+- “Explain what an API is.”
+- “What is a database index and why is it useful?”
+- “Compare a process and a thread in operating systems.”
 
 #### Toggle Structured JSON mode
 
@@ -416,16 +427,17 @@ python -m app.benchmark
 
 What it measures:
 
-TTFT
-total latency
-output token count
-tokens/sec
-Python and Ollama memory usage
-Output:
+- TTFT
+- total latency
+- output token count
+- tokens/sec
+- Python and Ollama memory usage
 
-benchmark_results_raw.csv
-benchmark_summary.csv
-Cold/warm benchmark
+#### Output:
+
+- benchmark_results_raw.csv
+- benchmark_summary.csv
+- Cold/warm benchmark
 
 #### bash
 
@@ -433,91 +445,129 @@ python
 
 -m app.cold_warm_benchmark
 
-What it measures:
+#### What it measures:
 
-cold start after unloading the model
-warm measurements after warm-up
-TTFT, latency, throughput, memory
+- cold start after unloading the model
+- warm measurements after warm-up
+- TTFT, latency, throughput, memory
 
-Output:
+#### Output:
 
 cold_warm_benchmark.csv
+
 Temperature benchmark
 
-bash
+#### bash
 
 python
 
 -m app.temperature_benchmark
 
 
-What it measures:
+#### What it measures:
 
 temperature = 0.0 and 0.7
+
 prompt-by-prompt repeated runs
+
 TTFT, latency, throughput, output token count
 
 
-Output:
+#### Output:
 
 temperature_results.csv
+
 Structured output benchmark
 
-bash
+#### bash
 
 python 
+
 -m app.structured_benchmark
 
-What it measures:
+#### What it measures:
 
 success/failure on structured-output prompts
+
 number of attempts
+
 validation retry behavior
 
-Output:
+#### Output:
 
 structured_results.csv
+
 Model benchmark
 
-bash
-python -m app.model_benchmark --model mistral:7b-instruct-v0.3-q5_K_M --repetitions 1 --num-predict 256
-What it measures:
+#### bash
+python
+
+-m app.model_benchmark --model mistral:7b-instruct-v0.3-q5_K_M --repetitions 1 --num-predict 256
+
+#### What it measures:
 
 multi-model benchmark runs
-standardized prompt workload
-TTFT, latency, tokens/sec, output tokens, model memory
-Output:
 
-results/<model>_raw.csv
-results/<model>_summary.csv
-results/<model>_category_summary.csv
-15. Testing
+standardized prompt workload
+
+TTFT, latency, tokens/sec, output tokens, model memory
+
+#### Output:
+
+- results/<model>_raw.csv
+
+- results/<model>_summary.csv
+
+- results/<model>_category_summary.csv
+
+## 15. Testing
 
 The repository includes a test for structured-output reliability:
 
-bash
+#### bash
+
 pytest tests/
-Test file
 
-tests/test_structured_output.py verifies:
+#### Test file
 
-valid output is accepted on the first attempt
-invalid output triggers a retry
-retry failure raises StructuredOutputError
-the final failure path is handled gracefully
-16. Engineering Challenges and Solutions
+tests/test_structured_output.py 
 
-Challenge: structured output validation failures
+#### verifies:
 
-Problem → Investigation → Solution → Engineering lesson
+- valid output is accepted on the first attempt
+- invalid output triggers a retry
+- retry failure raises StructuredOutputError
+- the final failure path is handled gracefully
 
-Problem: local models sometimes return malformed or out-of-schema JSON.
-Investigation: the project checks the model output as Pydantic JSON and identifies validation failures.
-Solution: app/structured_output.py adds a retry path with explicit instructions to return valid JSON only.
-Engineering lesson: validation-aware prompting plus bounded retry is a practical pattern for local LLMs.
-Challenge: cold start overhead
 
-Problem → Investigation → Solution → Engineering lesson
+## 16. Engineering Challenges and Solutions
+
+#### Challenge: structured output validation failures
+
+#### Problem → Investigation → Solution → Engineering lesson
+
+#### Problem: 
+
+- local models sometimes return malformed or out-of-schema JSON.
+
+#### Investigation: 
+
+The project checks the model output as Pydantic JSON and identifies validation failures.
+
+#### Solution: 
+
+app/structured_output.py adds a retry path with explicit instructions to return valid JSON only.
+
+#### Engineering lesson: 
+
+validation-aware prompting plus bounded retry is a practical pattern for local LLMs.
+
+
+#### Challenge: 
+
+cold start overhead
+
+#### Problem → Investigation → Solution → Engineering lesson
 
 Problem: cold model startup is much slower than warm inference.
 Investigation: cold_warm_benchmark.py unloads the model and measures the difference between cold and warm runs.
@@ -589,12 +639,13 @@ Benchmark Results
 
 <img width="252" height="818" alt="Screenshot 2026-09-30 at 8 33 22 PM" src="https://github.com/user-attachments/assets/de15a5a0-5069-4467-8e62-6f85226ad349" />
 
-21. Demo
+## 21. Demo
 
 <!-- TODO: Add screen-recorded demo link -->
-22. Technical Highlights for Recruiters
 
-Backend
+## 22. Technical Highlights 
+
+#### Backend
 
 Python
 FastAPI
@@ -603,20 +654,23 @@ Local process inspection
 HTTP API design
 LLM / inference
 
-Ollama
+#### Ollama
+
 local LLM inference
 streaming generation
 generation controls
 structured output validation
 TTFT and latency measurement
-Evaluation
+
+#### Evaluation
 
 benchmarking
 latency analysis
 memory profiling
 quantization experiments
 automated quality evaluation
-Engineering
+
+#### Engineering
 
 validation
 retry handling
@@ -624,39 +678,22 @@ error handling
 testing
 reproducibility
 working with real system constraints
-23. Technologies Used
 
-Technology	Role
-Python	Backend implementation
-FastAPI	API framework
-Uvicorn	ASGI server
-Ollama	Local model runtime
-Pydantic	Request/response validation and schema generation
-psutil	Process-level memory measurement
-httpx	HTTP testing/client support
-pytest	Testing
-HTML	Frontend structure
-CSS	Frontend styling
-JavaScript	Frontend logic
-CSV	Benchmark data storage
-JSON	Configuration and evaluation data
-24. License
 
-License: Not specified.
+## 23. Technologies Used
 
-25. Author / Links
+<img width="474" height="503" alt="Screenshot 2026-10-11 at 12 07 29 PM" src="https://github.com/user-attachments/assets/bc88b4d5-780e-4f45-82ca-b5ceaa1a425c" />
+
+
+## 25. Author / Links
 
 GitHub: GitHub profile
 LinkedIn: LinkedIn profile
 Portfolio: Portfolio
-26. Summary
+
+## 26. Summary
 
 Local AI Assistant is a compact, practical engineering project focused on local inference, benchmarking, and structured-output reliability. It demonstrates hands-on work with Python, FastAPI, Ollama, Pydantic, benchmarking scripts, and local system metrics while staying grounded in truly local execution and reproducible data collection.
 
 This is not a generic “AI app.” It is a small but credible research-and-build project that interrogates the real constraints of local inference: latency, memory pressure, model reliability, temperature effects, structured output quality, and benchmark reproducibility.
 
-If you want, I can also provide:
-
-a shorter recruiter-friendly version
-a more technical version for ML/AI engineering audiences
-a version optimized for GitHub with tighter markdown formatting and less narrative text
