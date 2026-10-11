@@ -58,27 +58,27 @@ graph TD
     
 ### Components
 
-### - Frontend: 
+- ### Frontend: 
 
 A simple HTML/CSS/JS interface that sends prompts to the backend and displays metrics.
 
-### - FastAPI backend: 
+- ### FastAPI backend: 
 
 Exposes the chat and structured-chat endpoints and validates incoming payloads.
 
-### - Ollama client: 
+- ### Ollama client: 
 
 Handles model inference, streaming, and timing measurements.
 
-### - Structured output module: 
+- ### Structured output module: 
 
 Builds a JSON schema from a Pydantic model, submits it to the model, validates the result, and retries once on failure.
 
-### - System metrics: 
+- ### System metrics: 
 
 Checks CPU/RSS memory usage for the current Python process and the running llama-server process.
 
-### - Local model: 
+- ### Local model: 
 
 The Ollama model served locally on the machine.
 
@@ -116,40 +116,43 @@ The repository is explicit about model-level benchmarking and quantization exper
 
 The benchmark system is implemented primarily in:
 
-app/benchmark.py
-app/model_benchmark.py
-app/cold_warm_benchmark.py
-app/temperature_benchmark.py
-app/structured_benchmark.py
-app/quantization_benchmark.py
-Prompt categories in benchmarks/prompts.json
+- app/benchmark.py
+- app/model_benchmark.py
+- app/cold_warm_benchmark.py
+- app/temperature_benchmark.py
+- app/structured_benchmark.py
+- app/quantization_benchmark.py
+  
+#### Prompt categories in benchmarks/prompts.json
 
 The benchmark set includes these categories:
 
-factual
-reasoning
-summarization
-instruction_following
-classification
-information_extraction
-coding
-structured_output
-Benchmark behavior
+- factual
+- reasoning
+- summarization
+- instruction_following
+- classification
+- information_extraction
+- coding
+- structured_output
+- Benchmark behavior
 
 Within each benchmark script, the project measures:
 
-TTFT (time to first token)
-total latency
-output tokens
-tokens/sec
-Python memory
-Ollama model memory
-cold vs warm behavior
-temperature effect
-prompt-by-prompt and aggregate statistics
+- TTFT (time to first token)
+- total latency
+- output tokens
+- tokens/sec
+- Python memory
+- Ollama model memory
+- cold vs warm behavior
+- temperature effect
+- prompt-by-prompt and aggregate statistics
+  
 The repository indicates the same prompt set and settings were reused within a benchmark run for comparison. It does not make universal claims across all hardware; benchmark output is hardware- and runtime-dependent.
 
 ### Q4 memory note
+
 The repository includes Q5 quantization scripts and verified Q5 outputs, but no validated Q4 Mistral memory summary was found in the checked files. For that reason, this README does not use unverified Q4 Mistral memory values for quantitative comparison.
 
 ## 7. Quantitative Results
@@ -178,42 +181,47 @@ The repository includes benchmark_summary.csv, but the line in the tool output w
 
 The project includes an automated quality-evaluation workflow:
 
-app/quality_evaluator.py
-app/quality_rubric.json
-app/auto_quality_score.py
-app/update_quality_scores.py
-Scoring dimensions
+- app/quality_evaluator.py
+- app/quality_rubric.json
+- app/auto_quality_score.py
+- app/update_quality_scores.py
+- Scoring dimensions
 
 The rubric in benchmarks/quality_rubric.json defines three score dimensions:
 
-correctness
-instruction_adherence
-completeness
+- correctness
+- instruction_adherence
+- completeness
+  
 Each dimension is scored on a 0–2 scale:
 
-0 = fails criterion or contains a material error
-1 = partially satisfies criterion
-2 = fully satisfies the criterion
-Automated evaluation mechanism
+- 0 = fails criterion or contains a material error
+- 1 = partially satisfies criterion
+- 2 = fully satisfies the criterion
+  
+#### Automated evaluation mechanism
 
 The evaluator is designed to:
 
-load benchmark results from results/*_raw.csv
-match each result to a prompt in benchmarks/prompts.json
-use a rubric from benchmarks/quality_rubric.json
-calculate a quality score as the mean of the three dimensions
-save evaluation and summary CSVs
+- load benchmark results from results/*_raw.csv
+- match each result to a prompt in benchmarks/prompts.json
+- use a rubric from benchmarks/quality_rubric.json
+- calculate a quality score as the mean of the three dimensions
+- save evaluation and summary CSVs
+  
 This workflow is not presented as human ground truth. It is an automated evaluation process with its own biases and limits.
 
 ### Limitations
 
-The repository explicitly frames this as an automated evaluation workflow rather than a substitute for human judgment. Important limitations include:
+The repository explicitly frames this as an automated evaluation workflow rather than a substitute for human judgment. 
 
-model-generated evaluation introduces evaluator/model bias
-the score reflects local LLM behavior and prompt phrasing
-the benchmark set is limited
-one model acting as judge can be biased toward similar outputs
-results are useful for relative comparison, not absolute truth
+#### Important limitations include:
+
+- model-generated evaluation introduces evaluator/model bias
+- the score reflects local LLM behavior and prompt phrasing
+- the benchmark set is limited
+- one model acting as judge can be biased toward similar outputs
+- results are useful for relative comparison, not absolute truth
 
 ## 9. API
 
@@ -264,13 +272,14 @@ The project’s structured output flow is implemented in app/structured_output.p
 
 #### How it works
 
-A Pydantic model is defined in app/schemas.py
-JSON schema is derived with model_json_schema()
-The schema is embedded in the prompt sent to Ollama
-The response is parsed with model_validate_json()
-Validation errors trigger a retry
-If validation still fails, the code raises a StructuredOutputError
-Schema
+- A Pydantic model is defined in app/schemas.py
+- JSON schema is derived with model_json_schema()
+- The schema is embedded in the prompt sent to Ollama
+- The response is parsed with model_validate_json()
+- Validation errors trigger a retry
+- If validation still fails, the code raises a StructuredOutputError
+  
+#### Schema
 
 Python
 
@@ -307,25 +316,25 @@ The frontend is implemented under frontend/ and is a plain web app with no npm d
 
 #### Features in the repo
 
-chat interface
-backend status indicator
-temperature control
-structured JSON toggle
-metrics panel
-model display
-responsive layout
-markdown rendering for assistant responses
-Run locally
+- chat interface
+- backend status indicator
+- temperature control
+- structured JSON toggle
+- metrics panel
+- model display
+- responsive layout
+- markdown rendering for assistant responses
+- Run locally
 
 #### bash
 python -m http.server 5500 --directory frontend
 
 #### Then open:
-#### Text
+- #### Text
 http://127.0.0.1:5500
 
 #### The frontend calls the backend at:
-#### Text
+- #### Text
 http://127.0.0.1:8000
 
 
@@ -333,24 +342,24 @@ http://127.0.0.1:8000
 
 #### Prerequisites
 
-Python 3.9 or later
-Ollama installed locally
-Git
-Clone
+- Python 3.9 or later
+- Ollama installed locally
+- Git
+- Clone
 
 #### bash
 
-git clone https://github.com/shreyd04/Local_AI_Assistant.git
+- git clone https://github.com/shreyd04/Local_AI_Assistant.git
 
-cd Local_AI_Assistant
+- cd Local_AI_Assistant
 
 #### Create a virtual environment
 
 #### bash
 
-python3 -m venv .venv
+- python3 -m venv .venv
 
-source .venv/bin/activate
+- source .venv/bin/activate
 
 
 #### Install dependencies
@@ -363,13 +372,13 @@ pip install -r requirements.txt
 
 #### Text
 
-fastapi
-uvicorn[standard]
-ollama
-pydantic
-psutil
-httpx
-pytest
+- fastapi
+- uvicorn[standard]
+- ollama
+- pydantic
+- psutil
+- httpx
+- pytest
 
 #### Ollama prerequisite
 
@@ -442,6 +451,7 @@ These commands are the ones implemented in the project by script names under app
 Baseline benchmark
 
 #### bash
+
 python -m app.benchmark
 
 What it measures:
@@ -472,9 +482,9 @@ python
 
 #### Output:
 
-cold_warm_benchmark.csv
+- cold_warm_benchmark.csv
 
-Temperature benchmark
+- Temperature benchmark
 
 #### bash
 
@@ -485,18 +495,18 @@ python
 
 #### What it measures:
 
-temperature = 0.0 and 0.7
+- temperature = 0.0 and 0.7
 
-prompt-by-prompt repeated runs
+- prompt-by-prompt repeated runs
 
-TTFT, latency, throughput, output token count
+- TTFT, latency, throughput, output token count
 
 
 #### Output:
 
-temperature_results.csv
+- temperature_results.csv
 
-Structured output benchmark
+- Structured output benchmark
 
 #### bash
 
@@ -506,30 +516,31 @@ python
 
 #### What it measures:
 
-success/failure on structured-output prompts
+- success/failure on structured-output prompts
 
-number of attempts
+- number of attempts
 
-validation retry behavior
+- validation retry behavior
 
 #### Output:
 
-structured_results.csv
+- structured_results.csv
 
-Model benchmark
+- Model benchmark
 
 #### bash
+
 python
 
 -m app.model_benchmark --model mistral:7b-instruct-v0.3-q5_K_M --repetitions 1 --num-predict 256
 
 #### What it measures:
 
-multi-model benchmark runs
+- multi-model benchmark runs
 
-standardized prompt workload
+- standardized prompt workload
 
-TTFT, latency, tokens/sec, output tokens, model memory
+- TTFT, latency, tokens/sec, output tokens, model memory
 
 #### Output:
 
@@ -565,85 +576,100 @@ tests/test_structured_output.py
 
 #### Problem → Investigation → Solution → Engineering lesson
 
-#### Problem: 
+- #### Problem: 
 
-- local models sometimes return malformed or out-of-schema JSON.
+local models sometimes return malformed or out-of-schema JSON.
 
-#### Investigation: 
+- #### Investigation: 
 
 The project checks the model output as Pydantic JSON and identifies validation failures.
 
-#### Solution: 
+- #### Solution: 
 
 app/structured_output.py adds a retry path with explicit instructions to return valid JSON only.
 
-#### Engineering lesson: 
+- #### Engineering lesson: 
 
 validation-aware prompting plus bounded retry is a practical pattern for local LLMs.
 
 
-#### Challenge: 
+- #### Challenge: 
 
 cold start overhead
 
 #### Problem → Investigation → Solution → Engineering lesson
 
-Problem: cold model startup is much slower than warm inference.
-Investigation: cold_warm_benchmark.py unloads the model and measures the difference between cold and warm runs.
-Solution: the script polls process memory and waits for the local llama-server process to unload.
-Engineering lesson: model loading costs add real latency and should be explicitly measured.
-Challenge: model memory measurement
+- #### Problem: cold model startup is much slower than warm inference.
 
-Problem → Investigation → Solution → Engineering lesson
+- #### Investigation: cold_warm_benchmark.py unloads the model and measures the difference between cold and warm runs.
 
-Problem: RSS memory must be measured outside the model runtime itself.
-Investigation: app/system_metrics.py inspects ps output to find llama-server and sums RSS.
-Solution: the code uses process-level memory measurement and guards against missing or inaccessible processes.
-Engineering lesson: system-level metrics are important, but they require careful platform-specific handling.
-Challenge: frontend/backend connectivity
+- #### Solution: the script polls process memory and waits for the local llama-server process to unload.
+  
+- #### Engineering lesson: model loading costs add real latency and should be explicitly measured.
+  
+- #### Challenge: model memory measurement
 
-Problem → Investigation → Solution → Engineering lesson
+#### Problem → Investigation → Solution → Engineering lesson
 
-Problem: the frontend and backend are on different local ports and may fail due to CORS or backend health issues.
-Investigation: app/main.py includes CORS middleware and the frontend checks backend health.
-Solution: the app exposes a local health endpoint and the browser displays backend status.
-Engineering lesson: local tools need clear connection diagnostics.
-17. Performance Trade-offs
+- #### Problem: RSS memory must be measured outside the model runtime itself.
+
+- #### Investigation: app/system_metrics.py inspects ps output to find llama-server and sums RSS.
+
+- #### Solution: the code uses process-level memory measurement and guards against missing or inaccessible processes.
+
+- #### Engineering lesson: system-level metrics are important, but they require careful platform-specific handling.
+
+- #### Challenge: frontend/backend connectivity
+
+#### Problem → Investigation → Solution → Engineering lesson
+
+- #### Problem: the frontend and backend are on different local ports and may fail due to CORS or backend health issues.
+
+- #### Investigation: app/main.py includes CORS middleware and the frontend checks backend health.
+
+- #### Solution: the app exposes a local health endpoint and the browser displays backend status.
+
+- #### Engineering lesson: local tools need clear connection diagnostics.
+
+## 17. Performance Trade-offs
 
 The repository shows several real trade-offs without claiming a universal winner:
 
-Smaller models can require less memory but may produce shorter or more variable outputs depending on prompt and system conditions.
-Quantized models reduce memory usage but depend on the local model runtime and hardware environment.
-Temperature changes output variance; higher temperature tends to increase variety, while lower values make output more deterministic.
-TTFT and total latency are not equivalent. TTFT reflects the time to first token; total latency reflects the full generation time.
-More complex prompts can produce longer outputs, which lengthen total latency.
-Benchmark numbers strongly depend on the hardware, system load, and local model runtime.
-18. Limitations
+- Smaller models can require less memory but may produce shorter or more variable outputs depending on prompt and system conditions.
+- Quantized models reduce memory usage but depend on the local model runtime and hardware environment.
+- Temperature changes output variance; higher temperature tends to increase variety, while lower values make output more deterministic.
+- TTFT and total latency are not equivalent. TTFT reflects the time to first token; total latency reflects the full generation time.
+- More complex prompts can produce longer outputs, which lengthen total latency.
+- Benchmark numbers strongly depend on the hardware, system load, and local model runtime.
+
+## 18. Limitations
 
 The repository is honest about the constraints of the project:
 
-local hardware limits strongly affect latency, memory, and throughput
-automated LLM-based evaluation is not human ground truth
-benchmark datasets are limited
-benchmark numbers are runtime- and hardware-dependent
-structure validation can fail on some prompts
-some scripts use the same local LLM as both subject and judge, which introduces evaluation bias
-memory measurement is process-based and is sensitive to OS behavior
-19. Future Improvements
+- local hardware limits strongly affect latency, memory, and throughput
+- automated LLM-based evaluation is not human ground truth
+- benchmark datasets are limited
+- benchmark numbers are runtime- and hardware-dependent
+- structure validation can fail on some prompts
+- some scripts use the same local LLM as both subject and judge, which introduces evaluation bias
+- memory measurement is process-based and is sensitive to OS behavior
+
+## 19. Future Improvements
 
 These are clearly labeled as future work and are not presented as existing features:
 
-more robust model discovery
-configurable generation limits
-larger benchmark suites
-human evaluation
-additional hardware tests
-richer observability
-persistent chat history
-authentication if deployment is required
-containerization
-streaming token display in the frontend
-20. Screenshots
+- more robust model discovery
+- configurable generation limits
+- larger benchmark suites
+- human evaluation
+- additional hardware tests
+- richer observability
+- persistent chat history
+- authentication if deployment is required
+- containerization
+- streaming token display in the frontend
+
+## 20. Screenshots
 
 Chat Interface
 
@@ -666,37 +692,37 @@ Benchmark Results
 
 #### Backend
 
-Python
-FastAPI
-Pydantic
-Local process inspection
-HTTP API design
-LLM / inference
+- Python
+- FastAPI
+- Pydantic
+- Local process inspection
+- HTTP API design
+- LLM / inference
 
 #### Ollama
 
-local LLM inference
-streaming generation
-generation controls
-structured output validation
-TTFT and latency measurement
+- local LLM inference
+- streaming generation
+- generation controls
+- structured output validation
+- TTFT and latency measurement
 
 #### Evaluation
 
-benchmarking
-latency analysis
-memory profiling
-quantization experiments
-automated quality evaluation
+- benchmarking
+- latency analysis
+- memory profiling
+- quantization experiments
+- automated quality evaluation
 
 #### Engineering
 
-validation
-retry handling
-error handling
-testing
-reproducibility
-working with real system constraints
+- validation
+- retry handling
+- error handling
+- testing
+- reproducibility
+- working with real system constraints
 
 
 ## 23. Technologies Used
@@ -706,13 +732,14 @@ working with real system constraints
 
 ## 25. Author / Links
 
-GitHub: GitHub profile
-LinkedIn: LinkedIn profile
-Portfolio: Portfolio
+- GitHub: GitHub profile
+- LinkedIn: LinkedIn profile
+- Portfolio: Portfolio
 
 ## 26. Summary
 
-Local AI Assistant is a compact, practical engineering project focused on local inference, benchmarking, and structured-output reliability. It demonstrates hands-on work with Python, FastAPI, Ollama, Pydantic, benchmarking scripts, and local system metrics while staying grounded in truly local execution and reproducible data collection.
-
-This is not a generic “AI app.” It is a small but credible research-and-build project that interrogates the real constraints of local inference: latency, memory pressure, model reliability, temperature effects, structured output quality, and benchmark reproducibility.
+- Local AI Assistant is a compact, practical engineering project focused on local inference, benchmarking, and structured-output reliability.
+- It demonstrates hands-on work with Python, FastAPI, Ollama, Pydantic, benchmarking scripts, and local system metrics while staying grounded in truly local execution and reproducible data collection.
+- This is not a generic “AI app.”
+- It is a small but credible research-and-build project that interrogates the real constraints of local inference: latency, memory pressure, model reliability, temperature effects, structured output quality, and benchmark reproducibility.
 
