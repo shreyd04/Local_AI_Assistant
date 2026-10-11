@@ -8,36 +8,37 @@ This project is a local-first LLM experimentation and benchmarking workspace bui
 
 The repository focuses on a practical engineering question: how do you reliably run small language models locally while measuring latency, throughput, memory usage, and output validity? The project addresses that by combining:
 
-a FastAPI backend for local inference
-a lightweight frontend for interactive prompting
-structured JSON generation with Pydantic validation
-retry-on-validation-failure logic
-benchmark scripts for runtime and memory measurement
-automated quality-scoring workflows using a local LLM as an evaluator
+- a FastAPI backend for local inference
+- a lightweight frontend for interactive prompting
+- structured JSON generation with Pydantic validation
+- retry-on-validation-failure logic
+- benchmark scripts for runtime and memory measurement
+- automated quality-scoring workflows using a local LLM as an evaluator
+  
 The emphasis is on local/offline inference, privacy, reproducibility, and measurement rather than production deployment or cloud orchestration.
 
 ## 2. Key Features
 
 The following features are implemented in the repository and verified in source:
 
-Local Ollama inference
-FastAPI backend
-Lightweight web frontend
-Streaming generation for TTFT and latency measurement
-TTFT (time to first token) capture
-Total latency measurement
-Tokens/sec calculation
-Output token counts
-Model memory and Python process memory measurement
-Structured JSON generation
-Pydantic schema validation
-Retry-on-validation-failure
-Graceful error handling for invalid structured output
-Temperature benchmarking
-Cold/warm model benchmarking
-Multi-model benchmark script support
-Automated quality scoring workflow
-Test coverage for structured-output validation
+- Local Ollama inference
+- FastAPI backend
+- Lightweight web frontend
+- Streaming generation for TTFT and latency measurement
+- TTFT (time to first token) capture
+- Total latency measurement
+- Tokens/sec calculation
+- Output token counts
+- Model memory and Python process memory measurement
+- Structured JSON generation
+- Pydantic schema validation
+- Retry-on-validation-failure
+- Graceful error handling for invalid structured output
+- Temperature benchmarking
+- Cold/warm model benchmarking
+- Multi-model benchmark script support
+- Automated quality scoring workflow
+- Test coverage for structured-output validation
 
 ## 3. System Architecture
 
@@ -54,14 +55,32 @@ graph TD
     E --> J[Generated text + metrics]
     J --> B
     B --> A
-Components
+    
+### Components
 
-Frontend: a simple HTML/CSS/JS interface that sends prompts to the backend and displays metrics.
-FastAPI backend: exposes the chat and structured-chat endpoints and validates incoming payloads.
-Ollama client: handles model inference, streaming, and timing measurements.
-Structured output module: builds a JSON schema from a Pydantic model, submits it to the model, validates the result, and retries once on failure.
-System metrics: checks CPU/RSS memory usage for the current Python process and the running llama-server process.
-Local model: the Ollama model served locally on the machine.
+### - Frontend: 
+
+A simple HTML/CSS/JS interface that sends prompts to the backend and displays metrics.
+
+### - FastAPI backend: 
+
+Exposes the chat and structured-chat endpoints and validates incoming payloads.
+
+### - Ollama client: 
+
+Handles model inference, streaming, and timing measurements.
+
+### - Structured output module: 
+
+Builds a JSON schema from a Pydantic model, submits it to the model, validates the result, and retries once on failure.
+
+### - System metrics: 
+
+Checks CPU/RSS memory usage for the current Python process and the running llama-server process.
+
+### - Local model: 
+
+The Ollama model served locally on the machine.
 
 ## 4. Repository Structure
 
@@ -71,17 +90,17 @@ Local model: the Ollama model served locally on the machine.
 
 ### Important Files :
 
-app/main.py: FastAPI app and actual HTTP endpoints
-app/ollama_client.py: model invocation, streaming response handling, and timing calculations
-app/structured_output.py: schema-driven structured generation and validation retry flow
-app/system_metrics.py: memory measurement logic for Python and Ollama model memory
-app/model_benchmark.py: standardized benchmark runner that loads prompts and writes raw + summary CSVs
-app/temperature_benchmark.py: compares behavior across temperature values
-app/cold_warm_benchmark.py: compares cold-start and warm-start performance
-benchmarks/prompts.json: benchmark prompt set
-benchmarks/quality_rubric.json: scoring rubric for automated quality evaluation
-frontend/app.js: browser-side API client and metrics display
-tests/test_structured_output.py: tests for structured output validation and retry logic
+- app/main.py: FastAPI app and actual HTTP endpoints
+- app/ollama_client.py: model invocation, streaming response handling, and timing calculations
+- app/structured_output.py: schema-driven structured generation and validation retry flow
+- app/system_metrics.py: memory measurement logic for Python and Ollama model memory
+- app/model_benchmark.py: standardized benchmark runner that loads prompts and writes raw + summary CSVs
+- app/temperature_benchmark.py: compares behavior across temperature values
+- app/cold_warm_benchmark.py: compares cold-start and warm-start performance
+- benchmarks/prompts.json: benchmark prompt set
+- benchmarks/quality_rubric.json: scoring rubric for automated quality evaluation
+- frontend/app.js: browser-side API client and metrics display
+- tests/test_structured_output.py: tests for structured output validation and retry logic
 
 
 ## 5. Models Evaluated
